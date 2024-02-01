@@ -10,8 +10,5 @@ cd /app/
 # Create admin user
 /opt/venv/bin/python manage.py create_admin_user
 
-# Load fixtures
-/opt/venv/bin/python manage.py loaddata jambo/fixtures/*
-
 # Run gunicorn
 /opt/venv/bin/gunicorn assignment.wsgi:application --bind "0.0.0.0:${APP_PORT}"
