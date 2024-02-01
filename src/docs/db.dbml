@@ -1,0 +1,72 @@
+
+Project assignment {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Assignment Database
+  '''
+}
+
+Table User {
+  id bigserial
+  password char
+  email email
+  full_name varchar
+  phone_number bigint
+  is_active boolean
+  customer boolean
+  admin boolean
+  timestamp timestampz
+}
+
+
+Table BusinessCategory {
+  id bigserial
+  name varchar
+  timestamp timestampz
+  updated timestampz
+
+  Indexes {
+    name
+  }
+}
+
+Table Business {
+  id bigserial
+  name varchar
+  active boolean
+  category_id bigserial [ref: > BusinessCategory.id, not null]
+  timestamp timestampz
+  updated timestampz
+
+  Indexes {
+    name
+  }
+}
+
+Table Item {
+  id bigserial
+  name varchar
+  amount float
+  timestamp timestampz
+  updated timestampz
+
+  Indexes {
+    name
+  }
+}
+
+Table BusinessItem {
+  id bigserial
+  user_id bigserial [ref: > User.id, not null]
+  business_id bigserial [ref: > Business.id, not null]
+  item_id bigserial [ref: > Item.id, not null]
+  year bigint
+  timestamp timestampz
+  updated timestampz
+
+  Indexes {
+    year
+    business_id
+    item_id
+  }
+}

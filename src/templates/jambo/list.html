@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+        <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">User Businesses</h2>
+            <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Volumes</p>
+        </div> 
+        <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+            <a href="{% url 'jambo:create' %}" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Upload File</a>
+        </div>
+        <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+            {% if items_page %}
+                    <div class="card mb-1">
+                        <div class="card card-body">
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>Phone No</th>
+                                    <th>Business Name</th>
+                                    <th>Business Category</th>
+                                    <th>Item</th>
+                                    <th>Amount</th>
+                                    <th>Year</th>
+                                </tr>
+                                {% for item in items_page %}
+                                <tr>
+                                    <td>{{item.customer_name}}</td>
+                                    <td>{{item.customer_phone_number}}</td>
+                                    <td>{{item.business_name}}</td>
+                                    <td>{{item.business_category}}</td>
+                                    <td>{{item.item_name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.year}}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                {% if items_page.has_other_pages %}
+                <div class="btn-group" role="group" aria-label="Item pagination">
+                    {% if items_page.has_previous %}
+                        <a href="?page={{ items_page.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+                    {% endif %}
+
+                    {% for page_number in items_page.paginator.page_range %}
+                        {% if items_page.number == page_number %}
+                            <button class="btn btn-outline-primary active">
+                                <span>{{ page_number }} <span class="sr-only">(current)</span></span>
+                            </button>
+                        {% else %}
+                            <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                                {{ page_number }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if items_page.has_next %}
+                        <a href="?page={{ items_page.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            {% else %}
+                <p>No items found.</p>
+            {% endif %}
+        
+        </div>  
+    </div>
+  </section>
+
+{% endblock %}
