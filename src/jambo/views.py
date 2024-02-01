@@ -11,7 +11,6 @@ from django.core.paginator import (
     EmptyPage,
     PageNotAnInteger,
 )
-import logging
 
 # Create your views here.
 def user_business_create(request):
@@ -26,14 +25,12 @@ def user_business_create(request):
 
             for row in csv_reader:
                 user = User.objects.filter(full_name=row['Customer name']).first()
-                logging.info('User: %s' % user.__str__())
                 # if user does not exist
                 if not user:
                     email = generate_email(row['Customer name'])
                     user = User.objects.create_customeruser(email=email, full_name=row['Customer name'], password=email, phone_number=row['Customer Phone number'])
 
                 if user:
-                    logging.info('User: %s' % user.__str__())
                     # check if business category exists else create
                     category, _ = BusinessCategory.objects.get_or_create(name=row['Business Category'])
                     # check if business exists else create
@@ -57,7 +54,6 @@ def user_business_list_view(request):
     page = request.GET.get('page', default_page)
     # Get queryset of items to paginate
     items = UserBusinessVolume.objects.all()
-    logging.info('items: %s\n', items.count())
     # Paginate items
     items_per_page = 10
     paginator = Paginator(items, items_per_page)

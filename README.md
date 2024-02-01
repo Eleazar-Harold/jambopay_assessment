@@ -90,6 +90,7 @@ The `jambo` app contains custom user logic and custom user model with other mode
 I managed to write minimal tests for the `views`` and `utils``, though i didn't want to take much time on that. However, it is necessary to write tests to cover all cases of whichever function was written. I also didn't manage to fix the UI much, i did the very basic setup to get the application working as expected. I'll revisit the UI at a later on.
 
 I've uploaded images of how the application looks and functions once you've run the setup [above](#getting-started). Please consider the screenshots for your review as well as part of this submission.
+For database design other than the files in the project, here's a [link to hosted dbdocs](https://dbdocs.io/haroldyewa/assignment). It's protected password is `4eyzQcwfh8AYq5mvgWp9`
 
 NOTE:
 I'll push .env-dev file for the assessment and there after i'll remove it after a period of 2 weeks.
