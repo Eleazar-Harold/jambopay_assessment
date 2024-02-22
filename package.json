@@ -2,7 +2,7 @@
     "devDependencies": {
       "flowbite": "^1.6.4",
       "tailwindcss": "^3.2.7",
-      "dbdocs": "^0.8.4",
+      "dbdocs": "^0.8.5",
       "@dbml/cli": "^3.1.2"
     }
 }
