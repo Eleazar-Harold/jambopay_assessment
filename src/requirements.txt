@@ -15,7 +15,7 @@ django==4.1.13
     #   django-storages
 django-storages==1.14.2
     # via -r src/requirements/requirements.in
-gunicorn==21.2.0
+gunicorn==22.0.0
     # via -r src/requirements/requirements.in
 packaging==23.2
     # via gunicorn
